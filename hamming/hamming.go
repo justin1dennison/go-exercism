@@ -3,12 +3,14 @@ package hamming
 import "errors"
 
 func Distance(a, b string) (int, error) {
-	if len(a) != len(b) {
-		return 0, errors.New("The strings must be the same distance")
+	aChars := []rune(a)
+	bChars := []rune(b)
+	if len(aChars) != len(bChars) {
+		return -1, errors.New("The strings must be the same distance")
 	}
 	count := 0
-	for index, first := range a {
-		second := rune(b[index])
+	for i, first := range aChars {
+		second := bChars[i]
 		if first != second {
 			count += 1
 		}
