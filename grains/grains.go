@@ -14,7 +14,7 @@ func Square(n int) (uint64, error) {
 }
 
 func Total() uint64 {
-	var total uint64 = 0
+	var total uint64
 	for i := 1; i <= 64; i += 1 {
 		val, _ := Square(i)
 		total += val
