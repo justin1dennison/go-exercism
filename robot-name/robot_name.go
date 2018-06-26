@@ -11,6 +11,8 @@ const digitLength int = nameLength - letterLength
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const digits = "0123456789"
 
+var seenNames map[string]bool
+
 type Robot struct {
 	name string
 }
@@ -19,6 +21,7 @@ func (r *Robot) Name() string {
 	if r.name != "" {
 		return r.name
 	}
+
 	result := make([]string, nameLength)
 
 	for i := 0; i < letterLength; i++ {
@@ -31,6 +34,9 @@ func (r *Robot) Name() string {
 		result = append(result, d)
 	}
 	name := strings.Join(result, "")
+	if _, ok := seenNames[name]; ok {
+		name = r.Name()
+	}
 	r.name = name
 	return name
 }
