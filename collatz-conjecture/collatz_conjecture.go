@@ -10,13 +10,9 @@ func CollatzConjecture(n int) (int, error) {
 		return 0, nil
 	}
 	count := 0
-	x := n
-	for {
-		x = step(x)
+	for n != 1 {
+		n = step(n)
 		count++
-		if x <= 1 {
-			break
-		}
 	}
 	return count, nil
 }
