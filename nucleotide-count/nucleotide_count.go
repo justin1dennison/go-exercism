@@ -2,21 +2,16 @@ package dna
 
 import "errors"
 
+// Histogram is a mapping of nucleotides in a strand of DNA to their frequency
 type Histogram map[rune]int
 
-func NewHistogram() Histogram {
-	h := Histogram(make(map[rune]int))
-	h['A'] = 0
-	h['C'] = 0
-	h['G'] = 0
-	h['T'] = 0
-	return h
-}
-
+// DNA is a list of nucleotides
 type DNA string
 
+//Counts generate a histogram of valid nucleotides in the given DNA
+//Returns error for an invalid DNA strand
 func (d DNA) Counts() (Histogram, error) {
-	h := NewHistogram()
+	h := Histogram{'A': 0, 'C': 0, 'G': 0, 'T': 0}
 	for _, r := range d {
 		switch r {
 		case 'A', 'C', 'G', 'T':
